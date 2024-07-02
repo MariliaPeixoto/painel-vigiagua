@@ -18,9 +18,11 @@ col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 
 # Amostras dos dados abertos
 dados_2024 = pd.read_csv('https://drive.google.com/uc?export=download&id=1aFmCeDug7eJRhTxSwIXxqw_hYHeUwKGC', sep=';')
+dados_2024['Regional de Saúde'] = dados_2024['Regional de Saúde'].str.zfill(7)
 
 # Amostras nao validadas
 dados_nao_validadas = pd.read_excel('https://drive.google.com/uc?export=download&id=1-DGZAo4cCk0jIVnmDkKRBVWDtWfaBAF2')
+dados_nao_validadas['Regional de Saúde'] = dados_nao_validadas['Regional de Saúde'].str.zfill(7)
 
 col1, col2, col3, col4 = st.columns(4)
 
