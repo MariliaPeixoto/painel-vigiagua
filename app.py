@@ -30,7 +30,7 @@ col1, col2, col3, col4 = st.columns([2,1,1,1])
 with col1:
     container_filtros = st.container(border=True)
     with container_filtros:
-        coluna_crs, coluna_ano, coluna_forma = st.columns(3)
+        coluna_crs, coluna_ano, coluna_forma = st.columns([1,1,2])
         with coluna_crs:
             crs_selecionada = st.selectbox(label='Selecione a CRS',
                                            options=sorted(dados_2024['Regional de Saúde'].unique()))
