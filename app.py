@@ -30,9 +30,14 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     container_filtros = st.container(border=True)
     with container_filtros:
-        crs_selecionada = st.selectbox(label='Selecione a CRS', options=sorted(dados_2024['Regional de Saúde'].unique()))
-        ano_selecionado = st.multiselect(label='Selecione o ano', options=sorted(dados_2024['Ano'].unique()), default=sorted(dados_2024['Ano'].unique()))
-        forma_abastecimento_selecionada = st.selectbox(label='Selecione o tipo da forma', options=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()))
+        crs_selecionada = st.selectbox(label='Selecione a CRS',
+                                       options=sorted(dados_2024['Regional de Saúde'].unique()))
+        ano_selecionado = st.multiselect(label='Selecione o ano',
+                                         options=sorted(dados_2024['Ano'].unique()),
+                                         default=sorted(dados_2024['Ano'].unique()))
+        forma_abastecimento_selecionada = st.multiselect(label='Selecione o tipo da forma',
+                                                         options=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()),
+                                                         default=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()))
 
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
