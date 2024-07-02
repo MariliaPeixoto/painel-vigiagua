@@ -25,7 +25,7 @@ dados_nao_validadas = pd.read_excel('https://drive.google.com/uc?export=download
 dados_nao_validadas['Regional de Saúde'] = dados_nao_validadas['Regional de Saúde'].str.zfill(7)
 dados_nao_validadas['Ano'] = dados_nao_validadas['Data da coleta'].dt.year
 
-col1, col2, col3, col4 = st.columns([3,1,1,1])
+col1, col2, col3, col4 = st.columns([2.5,1,1,1])
 
 with col1:
     container_filtros = st.container(border=True)
