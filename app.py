@@ -31,7 +31,7 @@ with col1:
     container_filtros = st.container(border=True)
     with container_filtros:
         crs_selecionada = st.selectbox(label='Selecione a CRS', options=sorted(dados_2024['Regional de Saúde'].unique()))
-        ano_selecionado = st.selectbox(label='Selecione o ano', options=sorted(dados_2024['Ano'].unique()))
+        ano_selecionado = st.multiselect(label='Selecione o ano', options=sorted(dados_2024['Ano'].unique()), default=sorted(dados_2024['Ano'].unique()))
 
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
