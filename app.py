@@ -23,5 +23,5 @@ dados_2024 = pd.read_csv('https://drive.google.com/uc?export=download&id=1aFmCeD
 total_rows = len(dados_2024)
 inadequate_rows = len(dados_2024[dados_2024['Status'] == 'Inadequado'])
 percentage = inadequate_rows / total_rows * 100
-percentage
+st.metric(label = 'Porcentagem de amostras insatisfatórias', value=percentage)
 
