@@ -22,19 +22,19 @@ dados_2024 = pd.read_csv('https://drive.google.com/uc?export=download&id=1aFmCeD
 # Amostras nao validadas
 dados_nao_validadas = pd.read_excel('https://drive.google.com/uc?export=download&id=1-DGZAo4cCk0jIVnmDkKRBVWDtWfaBAF2')
 
-# Container para as métricas
-container_metricas = st.container(border=True)
-
 # Cálculo da porcentagem para amostras inadequadas GERAL
 total_rows = len(dados_2024)
 inadequate_rows = len(dados_2024[dados_2024['Status'] == 'Inadequado'])
 percentage = round(inadequate_rows / total_rows * 100, 2)
-container_metricas.metric(label = 'Análises insatisfatórias', value=f'{percentage}%')
+with st.container(border=True):
+    container_metricas.metric(label = 'Análises insatisfatórias', value=f'{percentage}%')
 
 # Número de análises feitas
 numero_de_amostras = dados_2024['Número da amostra'].nunique()
-container_metricas.metric(label = 'Total de amostras', value=f'{numero_de_amostras}')
+with st.container(border=True):
+    container_metricas.metric(label = 'Total de amostras', value=f'{numero_de_amostras}')
 
 # Número de amostras não validadas
 amostras_nao_validadas_total = len(dados_nao_validadas)
-container_metricas.metric(label = 'Amostras não validadas', value=f'{amostras_nao_validadas_total}')
+with st.container(border=True):
+    container_metricas.metric(label = 'Amostras não validadas', value=f'{amostras_nao_validadas_total}')
