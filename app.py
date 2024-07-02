@@ -28,6 +28,7 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     container_filtros = st.container(border=True)
+    crs_selecionada = st.selectbox(label='Selecione a CRS', options=dados_2024['Regional de Saúde'].unique())
 
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
