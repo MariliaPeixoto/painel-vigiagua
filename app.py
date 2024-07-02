@@ -5,7 +5,7 @@ import plotly.express as px
 
 # Configurações da página
 st.set_page_config(
-    page_title="Painel Vigiagua RS",
+    page_title="VIGIAGUA RS",
     page_icon="	:potable_water:",
     layout="wide",
     initial_sidebar_state='collapsed'
