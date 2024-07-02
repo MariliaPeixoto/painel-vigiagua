@@ -19,6 +19,10 @@ col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 # Amostras dos dados abertos
 dados_2024 = pd.read_csv('https://drive.google.com/uc?export=download&id=1aFmCeDug7eJRhTxSwIXxqw_hYHeUwKGC', sep=';')
 
+# Amostras nao validadas
+dados_nao_validadas = pd.read_excel('https://drive.google.com/uc?export=download&id=1-DGZAo4cCk0jIVnmDkKRBVWDtWfaBAF2')
+
+
 # Cálculo da porcentagem para amostras inadequadas GERAL
 total_rows = len(dados_2024)
 inadequate_rows = len(dados_2024[dados_2024['Status'] == 'Inadequado'])
