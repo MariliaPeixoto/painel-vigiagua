@@ -33,3 +33,6 @@ st.metric(label = 'Análises insatisfatórias', value=f'{percentage}%')
 numero_de_amostras = dados_2024['Número da amostra'].nunique()
 st.metric(label = 'Total de amostras', value=f'{numero_de_amostras}')
 
+# Número de amostras não validadas
+amostras_nao_validadas_total = len(dados_nao_validadas)
+st.metric(label = 'Amostras não validadas', value=f'{amostras_nao_validadas_total}')
