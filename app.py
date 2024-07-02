@@ -23,6 +23,7 @@ dados_2024['Regional de Saúde'] = dados_2024['Regional de Saúde'].str.zfill(7)
 # Amostras nao validadas
 dados_nao_validadas = pd.read_excel('https://drive.google.com/uc?export=download&id=1-DGZAo4cCk0jIVnmDkKRBVWDtWfaBAF2')
 dados_nao_validadas['Regional de Saúde'] = dados_nao_validadas['Regional de Saúde'].str.zfill(7)
+dados_nao_validadas['Ano'] = dados_nao_validadas['Data da coleta'].dt.year
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -30,6 +31,7 @@ with col1:
     container_filtros = st.container(border=True)
     with container_filtros:
         crs_selecionada = st.selectbox(label='Selecione a CRS', options=sorted(dados_2024['Regional de Saúde'].unique()))
+        ano_selecionado = st.selectbox(label='Selecione o ano', options=sorted(dados_2024['Ano'].unique()))
 
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
