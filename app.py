@@ -27,14 +27,14 @@ total_rows = len(dados_2024)
 inadequate_rows = len(dados_2024[dados_2024['Status'] == 'Inadequado'])
 percentage = round(inadequate_rows / total_rows * 100, 2)
 with st.container(border=True):
-    container_metricas.metric(label = 'Análises insatisfatórias', value=f'{percentage}%')
+    st.metric(label = 'Análises insatisfatórias', value=f'{percentage}%')
 
 # Número de análises feitas
 numero_de_amostras = dados_2024['Número da amostra'].nunique()
 with st.container(border=True):
-    container_metricas.metric(label = 'Total de amostras', value=f'{numero_de_amostras}')
+    st.metric(label = 'Total de amostras', value=f'{numero_de_amostras}')
 
 # Número de amostras não validadas
 amostras_nao_validadas_total = len(dados_nao_validadas)
 with st.container(border=True):
-    container_metricas.metric(label = 'Amostras não validadas', value=f'{amostras_nao_validadas_total}')
+    st.metric(label = 'Amostras não validadas', value=f'{amostras_nao_validadas_total}')
