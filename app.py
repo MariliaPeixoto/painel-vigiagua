@@ -23,5 +23,9 @@ dados_2024 = pd.read_csv('https://drive.google.com/uc?export=download&id=1aFmCeD
 total_rows = len(dados_2024)
 inadequate_rows = len(dados_2024[dados_2024['Status'] == 'Inadequado'])
 percentage = round(inadequate_rows / total_rows * 100, 2)
-st.metric(label = 'Amostras insatisfatórias', value=f'{percentage}%')
+st.metric(label = 'Análises insatisfatórias', value=f'{percentage}%')
+
+# Número de análises feitas
+numero_de_amostras = dados_2024['Número da amostra'].nunique()
+st.metric(label = 'Total de amostras', value=f'{numero_de_amostras}')
 
