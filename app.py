@@ -30,12 +30,17 @@ col1, col2, col3, col4 = st.columns([2,1,1,1])
 with col1:
     container_filtros = st.container(border=True)
     with container_filtros:
-        crs_selecionada = st.selectbox(label='Selecione a CRS',
-                                       options=sorted(dados_2024['Regional de Saúde'].unique()))
-        ano_selecionado = st.multiselect(label='Selecione o ano',
-                                         options=sorted(dados_2024['Ano'].unique()),
-                                         default=sorted(dados_2024['Ano'].unique()))
-        forma_abastecimento_selecionada = st.multiselect(label='Selecione o tipo da forma',
+        coluna_crs, coluna_ano, coluna_forma = st.columns(3)
+        with coluna_crs:
+            crs_selecionada = st.selectbox(label='Selecione a CRS',
+                                           options=sorted(dados_2024['Regional de Saúde'].unique()))
+        with coluna_ano:
+            ano_selecionado = st.multiselect(label='Selecione o ano',
+                                             options=sorted(dados_2024['Ano'].unique()),
+                                             default=sorted(dados_2024['Ano'].unique()))
+
+        with coluna_forma:        
+            forma_abastecimento_selecionada = st.multiselect(label='Selecione o tipo da forma',
                                                          options=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()),
                                                          default=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()))
 
