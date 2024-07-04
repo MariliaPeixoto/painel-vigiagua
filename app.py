@@ -26,10 +26,15 @@ dados_nao_validadas['Regional de Saúde'] = dados_nao_validadas['Regional de Sa�
 dados_nao_validadas['Ano'] = dados_nao_validadas['Data da coleta'].dt.year
 
 # Carrega dados de referência dos municípios
-muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/
+def load_geodata(url):
+    gdf = gpd.read_file(url)
+    return gdf
+
+muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
 # Remover acentos e converter para maiúsculo
-muni['NM_MUN'] = municipios['NM_MUN'].apply(lambda x: unidecode(x).upper())
+muni['NM_MUN'] = muni['NM_MUN'].apply(lambda x: unidecode(x).upper())
 muni
+
 
 col1, col2, col3, col4 = st.columns([2,1,1,1])
 
@@ -75,18 +80,4 @@ parametros = pd.pivot_table(dados_2024, index='Município', aggfunc='size').rese
 
 # Juntar tabelas dos dados dos municípios com o resultado das análises
 tabela_mapa = dados_2024.merge(muni_limpo, left_on='Código IBGE', right_on='IBGE6', how='right')
-
-map_fig = px.choropleth_mapbox(dados_mapa_final, geojson=dados_mapa_final.geometry,
-                          locations=dados_mapa_final.index, color='Coletas',
-                          color_continuous_scale = 'Reds',
-                          center ={'lat':-30.452349861219243, 'lon':-53.55320517512141}
-                          zoom=5.5,
-                          mapbox_style="carto-darkmatter",
-                          hover_name='NM_MUN',
-                          width=800,
-                          height=700,
-                          template='plotly_dark',
-                          title = f'Coletas agrotóxicos')
-map_fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-map_fig.show()
 
