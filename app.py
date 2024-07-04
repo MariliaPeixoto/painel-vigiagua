@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 from unidecode import unidecode
+import geopandas as gpd
 
 # Configurações da página
 st.set_page_config(
