@@ -28,7 +28,14 @@ dados_nao_validadas['Regional de Saúde'] = dados_nao_validadas['Regional de Sa�
 dados_nao_validadas['Data da coleta'] = pd.to_datetime(dados_nao_validadas['Data da coleta'], errors='coerce')
 dados_nao_validadas['Ano'] = dados_nao_validadas['Data da coleta'].dt.year
 
+# Carrega dados de referência dos municípios
+def load_geodata(url):
+    gdf = gpd.read_file(url)
+    return gdf
 
+muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
+# Remover acentos e converter para maiúsculo
+muni['NM_MUN'] = muni['NM_MUN'].apply(lambda x: unidecode(x).upper())
 
 col1, col2, col3, col4 = st.columns([2,1,1,1])
 
@@ -64,3 +71,7 @@ with col3:
 with col4:
     amostras_nao_validadas_total = len(dados_nao_validadas)
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
+
+# Transformar a tabela em dinâmica
+parametros = pd.pivot_table(dados_2024, index='Município', aggfunc='size').reset_index()
+parametros
