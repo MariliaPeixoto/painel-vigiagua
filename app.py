@@ -71,12 +71,3 @@ with col3:
 with col4:
     amostras_nao_validadas_total = len(dados_nao_validadas)
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
-
-# Transformar a tabela em dinâmica
-parametros = pd.pivot_table(dados_2024, index='Município', aggfunc='size').reset_index()
-parametros
-
-
-# Juntar tabelas dos dados dos municípios com o resultado das análises
-#tabela_mapa = parametros.merge(muni, left_on='Código IBGE', right_on='IBGE6', how='right')
-#tabela_mapa
