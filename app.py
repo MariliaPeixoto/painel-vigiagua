@@ -95,5 +95,6 @@ map_fig.update_traces(marker_line_width=0.2)
 map_fig.update_coloraxes(colorbar={'orientation':'h'},
                          colorbar_yanchor='bottom',
                          colorbar_y=-0.13)
- st.plotly_chart(map_fig, use_container_width=True)
+
+map_fig.show()
 
