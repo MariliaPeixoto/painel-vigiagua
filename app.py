@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 from unidecode import unidecode
+
 # Configurações da página
 st.set_page_config(
     page_title="VIGIAGUA RS",
@@ -33,7 +34,6 @@ def load_geodata(url):
 muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
 # Remover acentos e converter para maiúsculo
 muni['NM_MUN'] = muni['NM_MUN'].apply(lambda x: unidecode(x).upper())
-muni
 
 
 col1, col2, col3, col4 = st.columns([2,1,1,1])
@@ -79,5 +79,5 @@ with col4:
 parametros = pd.pivot_table(dados_2024, index='Município', aggfunc='size').reset_index(drop=True)
 
 # Juntar tabelas dos dados dos municípios com o resultado das análises
-tabela_mapa = dados_2024.merge(muni_limpo, left_on='Código IBGE', right_on='IBGE6', how='right')
-
+tabela_mapa = parametros.merge(muni, left_on='Código IBGE', right_on='IBGE6', how='right')
+tabela_mapa
