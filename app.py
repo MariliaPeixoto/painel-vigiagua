@@ -26,8 +26,10 @@ dados_nao_validadas['Regional de Saúde'] = dados_nao_validadas['Regional de Sa�
 dados_nao_validadas['Ano'] = dados_nao_validadas['Data da coleta'].dt.year
 
 # Carrega dados de referência dos municípios
-muni = pd.read_csv('https://raw.githubusercontent.com/andrejarenkow/csv/master/Munic%C3%ADpios%20RS%20IBGE6%20Popula%C3%A7%C3%A3o%20CRS%20Regional%20-%20P%C3%A1gina1.csv')
-muni['Município'] = muni['Município'].replace("Sant'Ana do Livramento", 'Santana do Livramento')
+muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/
+# Remover acentos e converter para maiúsculo
+muni['NM_MUN'] = municipios['NM_MUN'].apply(lambda x: unidecode(x).upper())
+muni
 
 col1, col2, col3, col4 = st.columns([2,1,1,1])
 
