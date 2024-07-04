@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-
+from unidecode import unidecode
 # Configurações da página
 st.set_page_config(
     page_title="VIGIAGUA RS",
@@ -70,33 +70,23 @@ with col4:
     with st.container(border=True):
         st.metric(label = 'Amostras não validadas', value=f'{amostras_nao_validadas_total}')
 
-# Selecionar as infos que precisa da tabela de municípios
-muni_limpo = muni[['Município','IBGE6', 'CRS']].set_index(['Município','IBGE6', 'CRS'])
+# Transformar a tabela em dinâmica
+parametros = pd.pivot_table(dados_2024, index='Município', aggfunc='size').reset_index(drop=True)
 
 # Juntar tabelas dos dados dos municípios com o resultado das análises
 tabela_mapa = dados_2024.merge(muni_limpo, left_on='Código IBGE', right_on='IBGE6', how='right')
 
-#Mapa da incidência por município
-map_fig = px.choropleth_mapbox(tabela_mapa,
-                               geojson=tabela_mapa.geometry,
-                               locations=tabela_mapa.index,  # Usando o índice como localização
-                               color='Status',
-                               color_continuous_scale='OrRd',
-                               center={'lat': 'lat', 'lon': 'lon'},
-                               zoom=zoom_ini,
-                               mapbox_style="carto-positron",
-                               hover_data=['Regional de Saúde'],
-                               hover_name='Município',# Define as informações do hover
-                               width=800,
-                               height=700,
-                               title='Teste')
-
-map_fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', margin=go.layout.Margin(l=10, r=10, t=50, b=10),
-                                  )
-map_fig.update_traces(marker_line_width=0.2)
-map_fig.update_coloraxes(colorbar={'orientation':'h'},
-                         colorbar_yanchor='bottom',
-                         colorbar_y=-0.13)
-
+map_fig = px.choropleth_mapbox(dados_mapa_final, geojson=dados_mapa_final.geometry,
+                          locations=dados_mapa_final.index, color='Coletas',
+                          color_continuous_scale = 'Reds',
+                          center ={'lat':-30.452349861219243, 'lon':-53.55320517512141}
+                          zoom=5.5,
+                          mapbox_style="carto-darkmatter",
+                          hover_name='NM_MUN',
+                          width=800,
+                          height=700,
+                          template='plotly_dark',
+                          title = f'Coletas agrotóxicos')
+map_fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 map_fig.show()
 
