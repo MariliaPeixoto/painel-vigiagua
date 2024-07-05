@@ -1,3 +1,5 @@
+!pip install unidecode
+
 # Importação das bibliotecas
 import pandas as pd
 import streamlit as st
