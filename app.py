@@ -94,9 +94,6 @@ def categorizar(i):
 # Categoriza os dados da coluna 'Insatisfatório %' em uma nova coluna
 dados['Categorias'] = dados['Insatisfatório %'].apply(categorizar)
 
-# Ordenar por categorias
-dados = dados.sort_values(['Insatisfatório %']).reset_index(drop=True)
-
 # Juntar tabelas
 tabela_mapa = muni.merge(dados, left_on='NM_MUN', right_on='Município', how='left').fillna('Sem dados')
 
@@ -124,5 +121,5 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 width=800,
                                 height=700,
                                 title='Insatisfatório %')
-mapa_fig.update_layout(margin={"r": 0, "t": 5, "l": 0, "b": 0})
+mapa_fig.update_layout(margin={"r": 0, "t": 15, "l": 0, "b": 0})
 st.plotly_chart(mapa_fig)
