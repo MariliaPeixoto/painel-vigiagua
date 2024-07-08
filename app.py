@@ -95,7 +95,7 @@ def categorizar(i):
 dados['Categorias'] = dados['Insatisfatório %'].apply(categorizar)
 
 # Ordenar por categorias
-dados = dados.sort_values(['Insatisfatório %'])
+dados = dados.sort_values(['Insatisfatório %']).reset_index(drop=True)
 
 # Juntar tabelas
 tabela_mapa = muni.merge(dados, left_on='NM_MUN', right_on='Município', how='left').fillna('Sem dados')
