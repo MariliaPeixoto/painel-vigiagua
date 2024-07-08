@@ -120,8 +120,9 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 zoom=5.5,
                                 mapbox_style="open-street-map",
                                 hover_name='NM_MUN', hover_data = 'Insatisfatório %',
+                                category_orders=[ 'Sem dados', '0 %', '1 % - 10 %', '11 % - 20 %', '21 % - 30 %', 'mais que 30 %'],
                                 width=800,
                                 height=700,
                                 title='Insatisfatório %')
-mapa_fig.update_layout(margin={"r": 0, "t": 1, "l": 0, "b": 0})
+mapa_fig.update_layout(margin={"r": 0, "t": 5, "l": 0, "b": 0})
 st.plotly_chart(mapa_fig)
