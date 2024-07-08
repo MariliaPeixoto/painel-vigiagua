@@ -72,3 +72,59 @@ with col4:
     amostras_nao_validadas_total = len(dados_nao_validadas)
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
 
+# Cria uma tabela dinâmica
+dados = pd.pivot_table(dados_2024, index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
+
+# Cálculo porcentagem de insatisfatórios
+dados['Insatisfatório %'] = ((dados['Inadequado'] / (dados['Adequado'] + dados['Inadequado'])) * 100).round(2)
+
+# Cria função para categorizar os dados
+def categorizar(i):
+  if i == 0:
+    return '0 %'
+  elif 0 < i <= 10:
+    return '1 % - 10 %'
+  elif 10 < i <=20:
+    return '11 % - 20 %'
+  elif 20 < i <= 30:
+    return '21 % - 30 %'
+  else:
+    return 'mais que 30 %'
+
+# Categoriza os dados da coluna 'Insatisfatório %' em uma nova coluna
+dados['Categorias'] = dados['Insatisfatório %'].apply(categorizar)
+
+# Ordenar por categorias
+dados = dados.sort_values(['Insatisfatório %'])
+
+# Juntar tabelas
+tabela_mapa = muni.merge(dados, left_on='NM_MUN', right_on='Município', how='left').fillna('Sem dados')
+
+# Paleta de cores para cada categoria
+cores = {
+    'Sem dados': '#d2d2d2',        
+    '0 %': '#bfe3c3',            
+    '1 % - 10 %': '#ff9a52',
+    '11 % - 20 %': '#ff7752',     
+    '21 % - 30 %': '#ff5252',    
+    'mais que 30 %': '#5e405b'     
+}
+
+# Criar o mapa
+px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw')
+mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
+                                locations=tabela_mapa.index,
+                                color='Categorias',
+                                color_discrete_map = cores,
+                                center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
+                                zoom=5.5,
+                                mapbox_style="open-street-map",
+                                hover_name='NM_MUN', hover_data = 'Insatisfatório %',
+                                width=800,
+                                height=700,
+                                title='Insatisfatório %')
+mapa_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+mapa_fig.update_coloraxes(colorbar={'orientation':'h'},
+                          colorbar_yanchor='bottom',
+                          colorbar_y=-0.13)
+st.plotly_chart(mapa_fig)
