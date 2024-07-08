@@ -1,5 +1,3 @@
-!pip install unidecode
-
 # Importação das bibliotecas
 import pandas as pd
 import streamlit as st
@@ -74,6 +72,3 @@ with col4:
     amostras_nao_validadas_total = len(dados_nao_validadas)
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
 
-# Transformar a tabela em dinâmica
-parametros = pd.pivot_table(dados_2024, index='Município', aggfunc='size').reset_index()
-parametros
