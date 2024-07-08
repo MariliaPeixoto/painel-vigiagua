@@ -72,8 +72,10 @@ with col4:
     amostras_nao_validadas_total = len(dados_nao_validadas)
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
 
-# Cria uma tabela dinâmica
-dados = pd.pivot_table(dados_2024, index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
+# Criar filtro
+parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=0)
+filtro = dados_2024['Parâmetro'] == parametro
+dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
 
 # Cálculo porcentagem de insatisfatórios
 dados['Insatisfatório %'] = ((dados['Inadequado'] / (dados['Adequado'] + dados['Inadequado'])) * 100).round(2)
@@ -120,6 +122,7 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 category_orders={'Categorias': [ 'Sem dados', '0 %', '1 % - 10 %', '11 % - 20 %', '21 % - 30 %', 'mais que 30 %']},
                                 width=800,
                                 height=700,
-                                title='Insatisfatório %')
-mapa_fig.update_layout(margin={"r": 0, "t": 15, "l": 0, "b": 0})
+                                title=f'{parametro} Insatisfatório %')
+
+mapa_fig.update_layout(margin={"r": 0, "t": 25, "l": 0, "b": 0})
 st.plotly_chart(mapa_fig)
