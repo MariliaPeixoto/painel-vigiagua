@@ -73,7 +73,7 @@ with col4:
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
 
 # Criar filtro
-parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=0)
+parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
 filtro = dados_2024['Parâmetro'] == parametro
 dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
 
