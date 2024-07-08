@@ -123,8 +123,5 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 width=800,
                                 height=700,
                                 title='Insatisfatório %')
-mapa_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-mapa_fig.update_coloraxes(colorbar={'orientation':'h'},
-                          colorbar_yanchor='bottom',
-                          colorbar_y=-0.13)
+mapa_fig.update_layout(margin={"r": 0, "t": 1, "l": 0, "b": 0})
 st.plotly_chart(mapa_fig)
