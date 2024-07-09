@@ -41,6 +41,8 @@ ref_muni = pd.read_csv('https://raw.githubusercontent.com/andrejarenkow/csv/mast
 ref_muni['CRS'] = (ref_muni['CRS'].astype(str).str.zfill(2) + 'ª CRS')
 ref_muni['Município'] = ref_muni['Município'].apply(lambda x: unidecode(x).upper())
 
+# Cria variavel para mudar o zoom
+zoom_ini = 5.5
 
 col1, col2, col3, col4 = st.columns([2,1,1,1])
 
@@ -80,13 +82,16 @@ lista_municipios_muni = municipios_muni['Município']
 if crs_selecionada != 'Todas':
     # Filtrar os dados de 2024 apenas para a CRS selecionada
     dados_2024 = dados_2024[filtro_crs]
-
+    
     # Criar filtro para selecionar os dados geográficos (muni) cujo nome do município está na lista de municípios da CRS selecionada
     filtro_geodata_crs = muni['NM_MUN'].isin(lista_municipios_muni)
 
     # Aplicar o filtro aos dados geográficos (muni)
     muni = muni[filtro_geodata_crs]
-    
+
+    # Alterar o zoom para aproximar da CRS
+    zoom_ini = 7
+
 parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
 filtro = dados_2024['Parâmetro'] == parametro
 dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
