@@ -44,8 +44,11 @@ with col1:
     with container_filtros:
         coluna_crs, coluna_ano = st.columns([1,3])
         with coluna_crs:
+            opcoes_crs = sorted(dados_2024['Regional de Saúde'].unique())
+            # inserir na lista opcoes_crs o item TODAS
+            opcoes_crs.insert(0, 'TODAS')
             crs_selecionada = st.selectbox(label='Selecione a CRS',
-                                           options=sorted(dados_2024['Regional de Saúde'].unique()))
+                                           options= opcoes_crs)
         with coluna_ano:
             ano_selecionado = st.multiselect(label='Selecione o ano',
                                              options=sorted(dados_2024['Ano'].unique()),
