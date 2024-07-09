@@ -34,7 +34,7 @@ def load_geodata(url):
     return gdf
 
 muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
-muni
+
 # Remover acentos e converter para maiúsculo
 muni['NM_MUN'] = muni['NM_MUN'].apply(lambda x: unidecode(x).upper())
 ref_muni = pd.read_csv('https://raw.githubusercontent.com/andrejarenkow/csv/master/Munic%C3%ADpios%20RS%20IBGE6%20Popula%C3%A7%C3%A3o%20CRS%20Regional%20-%20P%C3%A1gina1.csv')
@@ -64,11 +64,28 @@ with col1:
                                                          options=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()),
                                                          default=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()))
 
-# Criar filtro
+# Criar filtro para selecionar dados da Regional de Saúde específica
 filtro_crs = dados_2024['Regional de Saúde'] == crs_selecionada
-# caso seja diferente de Todas
+
+# Criar filtro para selecionar referência de municípios da CRS específica
+filtro_muni = ref_muni['CRS'] == crs_selecionada
+
+# Filtrar os municípios da referência que pertencem à CRS selecionada
+municipios_muni = ref_muni[filtro_muni]
+
+# Criar uma lista dos municípios da referência da CRS selecionada
+lista_municipios_muni = municipios_muni['Município']
+
+# Verificar se a CRS selecionada não é 'Todas'
 if crs_selecionada != 'Todas':
+    # Filtrar os dados de 2024 apenas para a CRS selecionada
     dados_2024 = dados_2024[filtro_crs]
+
+    # Criar filtro para selecionar os dados geográficos (muni) cujo nome do município está na lista de municípios da CRS selecionada
+    filtro_geodata_crs = muni['NM_MUN'].isin(lista_municipios_muni)
+
+    # Aplicar o filtro aos dados geográficos (muni)
+    muni = muni[filtro_geodata_crs]
     
 parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
 filtro = dados_2024['Parâmetro'] == parametro
