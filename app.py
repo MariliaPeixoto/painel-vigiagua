@@ -102,7 +102,7 @@ tabela_mapa = muni.merge(dados, left_on='NM_MUN', right_on='Município', how='le
 # Paleta de cores para cada categoria
 cores = {
     'Sem dados': '#d2d2d2',        
-    '0 %': '#bfe3c3',            
+    '0 %': '#F7EF7A',            
     '1 % - 10 %': '#ff9a52',
     '11 % - 20 %': '#ff7752',     
     '21 % - 30 %': '#ff5252',    
