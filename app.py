@@ -36,7 +36,11 @@ def load_geodata(url):
 muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
 # Remover acentos e converter para maiúsculo
 muni['NM_MUN'] = muni['NM_MUN'].apply(lambda x: unidecode(x).upper())
-muni
+ref_muni = pd.read_csv('https://raw.githubusercontent.com/andrejarenkow/csv/master/Munic%C3%ADpios%20RS%20IBGE6%20Popula%C3%A7%C3%A3o%20CRS%20Regional%20-%20P%C3%A1gina1.csv')
+ref_muni['CRS'] = (ref_muni['CRS'].astype(str).str.zfill(2) + 'ª CRS')
+ref_muni['Município'] = ref_muni['Município'].apply(lambda x: unidecode(x).upper())
+ref_muni
+
 col1, col2, col3, col4 = st.columns([2,1,1,1])
 
 with col1:
