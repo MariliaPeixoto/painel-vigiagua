@@ -46,7 +46,8 @@ with col1:
         with coluna_crs:
             opcoes_crs = sorted(dados_2024['Regional de Saúde'].unique())
             # inserir na lista opcoes_crs o item TODAS
-            opcoes_crs.insert(0, 'TODAS')
+            opcoes_crs.insert(0, 'Todas')
+            
             crs_selecionada = st.selectbox(label='Selecione a CRS',
                                            options= opcoes_crs)
         with coluna_ano:
@@ -60,7 +61,10 @@ with col1:
 
 # Criar filtro
 filtro_crs = dados_2024['Regional de Saúde'] == crs_selecionada
-dados_2024 = dados_2024[filtro_crs]
+# caso seja diferente de Todas
+if crs_selecionada != 'Todas':
+    dados_2024 = dados_2024[filtro_crs]
+    
 parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
 filtro = dados_2024['Parâmetro'] == parametro
 dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
