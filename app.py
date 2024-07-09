@@ -36,7 +36,7 @@ def load_geodata(url):
 muni = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
 # Remover acentos e converter para maiúsculo
 muni['NM_MUN'] = muni['NM_MUN'].apply(lambda x: unidecode(x).upper())
-
+muni
 col1, col2, col3, col4 = st.columns([2,1,1,1])
 
 with col1:
