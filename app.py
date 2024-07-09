@@ -144,6 +144,12 @@ cores = {
     '21 % - 30 %': '#ff5252',    
     'mais que 30 %': '#5e405b'     
 }
+# Calcular os limites (min e max) das geometrias
+min_x, min_y, max_x, max_y = tabela_mapa.total_bounds
+
+# Calcular o ponto médio das geometrias
+centro_x = (min_x + max_x) / 2
+centro_y = (min_y + max_y) / 2
 
 # Criar o mapa
 px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw')
