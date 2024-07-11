@@ -42,7 +42,7 @@ ref_muni['CRS'] = (ref_muni['CRS'].astype(str).str.zfill(2) + 'ª CRS')
 ref_muni['Município'] = ref_muni['Município'].apply(lambda x: unidecode(x).upper())
 
 # Carrega dados dos limites das CRS
-	geojson_url = "https://raw.githubusercontent.com/andrejarenkow/geodata/main/RS_por_CRS/RS_por_CRS.json"
+geojson_url = "https://raw.githubusercontent.com/andrejarenkow/geodata/main/RS_por_CRS/RS_por_CRS.json"
 
 # Cria variavel para mudar o zoom
 zoom_ini = 5.5
