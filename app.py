@@ -148,21 +148,22 @@ cores = {
     #'mais que 30 %': '#5e405b' 
     'Cloro residual livre (mg/L)': {
         'Sem dados': '#d2d2d2',
-        '0 %': '#F7C623',
-        '1 % - 10 %': '#ff9a52',
+        '0 %': '#EEF3AD',
+        '1 % - 10 %': '#ADEBBE',
         '11 % - 20 %': '#ff7752',
-        '21 % - 30 %': '#ff5252',
-        'mais que 30 %': '#5e405b'
+        '21 % - 30 %': '#74BEC1',
+        'mais que 30 %': '#516091'
     },
     'Escherichia coli': {
         'Sem dados': '#d2d2d2',
-        '0 %': '#AED581',
-        '1 % - 10 %': '#FFEB3B',
-        '11 % - 20 %': '#FF9800',
-        '21 % - 30 %': '#F44336',
-        'mais que 30 %': '#B71C1C'
-    }
+        '0 %': '#efac41',
+        '1 % - 10 %': '#de8531',
+        '11 % - 20 %': '#b32900',
+        '21 % - 30 %': '#6c1305',
+        'mais que 30 %': '#330a04'
+    }    
 }
+
 # Calcular os limites (min e max) das geometrias
 min_x, min_y, max_x, max_y = tabela_mapa.total_bounds
 
@@ -175,7 +176,7 @@ px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxM
 mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 locations=tabela_mapa.index,
                                 color='Categorias',
-                                color_discrete_map = cores,
+                                color_discrete_map = cores[parametro],
                                 center={'lat': centro_y, 'lon': centro_x},
                                 zoom=zoom_ini,
                                 mapbox_style="open-street-map",
