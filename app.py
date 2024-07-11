@@ -161,7 +161,23 @@ cores = {
         '11 % - 20 %': '#b32900',
         '21 % - 30 %': '#6c1305',
         'mais que 30 %': '#330a04'
-    }    
+    },
+    'Fluoreto (mg/L)': {
+        'Sem dados': '#d2d2d2',
+        '0 %': '#B2C9D7',
+        '1 % - 10 %': '#9BC3DC',
+        '11 % - 20 %': '#6596B4',
+        '21 % - 30 %': '#317197',
+        'mais que 30 %': '#00517E'
+    },
+    'Turbidez (uT)': {
+        'Sem dados': '#d2d2d2',
+        '0 %': '#FAAA32',
+        '1 % - 10 %': '#D58C28',
+        '11 % - 20 %': '#B16D1D',
+        '21 % - 30 %': '#8D4F12',
+        'mais que 30 %': '#5F021F'
+    }marro
 }
 
 # Calcular os limites (min e max) das geometrias
