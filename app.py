@@ -140,12 +140,28 @@ tabela_mapa = muni.merge(dados, left_on='NM_MUN', right_on='Município', how='le
 
 # Paleta de cores para cada categoria
 cores = {
-    'Sem dados': '#d2d2d2',        
-    '0 %': '#F7C623',            
-    '1 % - 10 %': '#ff9a52',
-    '11 % - 20 %': '#ff7752',     
-    '21 % - 30 %': '#ff5252',    
-    'mais que 30 %': '#5e405b'     
+    #'Sem dados': '#d2d2d2',        
+    #'0 %': '#F7C623',            
+    #'1 % - 10 %': '#ff9a52',
+    #'11 % - 20 %': '#ff7752',     
+    #'21 % - 30 %': '#ff5252',    
+    #'mais que 30 %': '#5e405b' 
+    'Cloro residual livre (mg/L)': {
+        'Sem dados': '#d2d2d2',
+        '0 %': '#F7C623',
+        '1 % - 10 %': '#ff9a52',
+        '11 % - 20 %': '#ff7752',
+        '21 % - 30 %': '#ff5252',
+        'mais que 30 %': '#5e405b'
+    },
+    'Escherichia coli': {
+        'Sem dados': '#d2d2d2',
+        '0 %': '#AED581',
+        '1 % - 10 %': '#FFEB3B',
+        '11 % - 20 %': '#FF9800',
+        '21 % - 30 %': '#F44336',
+        'mais que 30 %': '#B71C1C'
+    }
 }
 # Calcular os limites (min e max) das geometrias
 min_x, min_y, max_x, max_y = tabela_mapa.total_bounds
@@ -169,7 +185,7 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 height=700,
                                 title=f'{parametro} Insatisfatório %')
 # Altera a espessura da linha da camada das CRS
-mapa_fig.update_traces(marker_line_width=0.05)
+mapa_fig.update_traces(marker_line_width=0.3)
 mapa_fig.update_layout(margin={"r": 0, "t": 25, "l": 0, "b": 0})
 # Insere no mapa a camada das CRS
 mapa_fig.update_layout(mapbox_layers = [dict(sourcetype = 'geojson',
