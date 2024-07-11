@@ -174,6 +174,6 @@ mapa_fig.update_layout(mapbox_layers = [dict(sourcetype = 'geojson',
                                         source = geojson_url,
                                         color='black',
                                         type = 'line',   
-                                        line=dict(width=1))
+                                        line=dict(width=1))])
                                                                                           
 st.plotly_chart(mapa_fig)
