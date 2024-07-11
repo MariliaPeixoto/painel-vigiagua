@@ -177,7 +177,7 @@ cores = {
         '11 % - 20 %': '#B16D1D',
         '21 % - 30 %': '#8D4F12',
         'mais que 30 %': '#5F021F'
-    }marro
+    }
 }
 
 # Calcular os limites (min e max) das geometrias
