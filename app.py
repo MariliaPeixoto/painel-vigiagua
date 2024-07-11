@@ -168,6 +168,12 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 width=800,
                                 height=700,
                                 title=f'{parametro} Insatisfatório %')
-
+mapa_fig.update_traces(marker_line_width=0.3)
 mapa_fig.update_layout(margin={"r": 0, "t": 25, "l": 0, "b": 0})
+mapa_fig.update_layout(mapbox_layers = [dict(sourcetype = 'geojson',
+                                        source = geojson_url,
+                                        color='black',
+                                        type = 'line',   
+                                        line=dict(width=1)
+                                                                                          
 st.plotly_chart(mapa_fig)
