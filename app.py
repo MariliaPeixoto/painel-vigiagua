@@ -169,7 +169,7 @@ mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
                                 height=700,
                                 title=f'{parametro} Insatisfatório %')
 # Altera a espessura da linha da camada das CRS
-mapa_fig.update_traces(marker_line_width=0.2)
+mapa_fig.update_traces(marker_line_width=0.1)
 mapa_fig.update_layout(margin={"r": 0, "t": 25, "l": 0, "b": 0})
 # Insere no mapa a camada das CRS
 mapa_fig.update_layout(mapbox_layers = [dict(sourcetype = 'geojson',
