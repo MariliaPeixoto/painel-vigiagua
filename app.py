@@ -117,6 +117,18 @@ with col4:
     amostras_nao_validadas_total = len(dados_nao_validadas)
     st.metric(label='Amostras não validadas', value=f'{amostras_nao_validadas_total}')
 
+# Ajuste de estilo CSS para centralizar os textos
+st.markdown(
+    """
+    <style>
+    .stMetric {
+        text-align: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Cálculo porcentagem de insatisfatórios
 dados['Insatisfatório %'] = ((dados['Inadequado'] / (dados['Adequado'] + dados['Inadequado'])) * 100).round(2)
 
