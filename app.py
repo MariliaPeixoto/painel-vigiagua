@@ -191,7 +191,6 @@ centro_y = (min_y + max_y) / 2
 col_mapa, col2 = st.columns([3,2])
 
 with col_mapa:
-    parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
     filtro = dados_2024['Parâmetro'] == parametro
     dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
     # Criar o mapa
