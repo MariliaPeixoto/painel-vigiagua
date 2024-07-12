@@ -97,8 +97,8 @@ if crs_selecionada != 'Todas':
     zoom_ini = 7
 
 #parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
-filtro = dados_2024['Parâmetro'] == parametro
-dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
+#filtro = dados_2024['Parâmetro'] == parametro
+#dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
 
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
@@ -191,6 +191,9 @@ centro_y = (min_y + max_y) / 2
 col_mapa, col2 = st.columns([3,2])
 
 with col_mapa:
+    parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
+    filtro = dados_2024['Parâmetro'] == parametro
+    dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
     # Criar o mapa
     px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw')
     mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
