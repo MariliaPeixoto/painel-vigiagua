@@ -97,8 +97,8 @@ if crs_selecionada != 'Todas':
     zoom_ini = 7
 
 #parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
-#filtro = dados_2024['Parâmetro'] == parametro
-#dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
+filtro = dados_2024['Parâmetro'] == parametro
+dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
 
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
