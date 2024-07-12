@@ -187,28 +187,31 @@ min_x, min_y, max_x, max_y = tabela_mapa.total_bounds
 centro_x = (min_x + max_x) / 2
 centro_y = (min_y + max_y) / 2
 
-# Criar o mapa
-px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw')
-mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
-                                locations=tabela_mapa.index,
-                                color='Categorias',
-                                color_discrete_map = cores[parametro],
-                                center={'lat': centro_y, 'lon': centro_x},
-                                zoom=zoom_ini,
-                                mapbox_style="open-street-map",
-                                hover_name='NM_MUN', hover_data = 'Insatisfatório %',
-                                category_orders={'Categorias': [ 'Sem dados', '0 %', '1 % - 10 %', '11 % - 20 %', '21 % - 30 %', 'mais que 30 %']},
-                                width=800,
-                                height=700,
-                                title=f'{parametro} Insatisfatório %')
-# Altera a espessura da linha da camada das CRS
-mapa_fig.update_traces(marker_line_width=0.3)
-mapa_fig.update_layout(margin={"r": 0, "t": 25, "l": 0, "b": 0})
-# Insere no mapa a camada das CRS
-mapa_fig.update_layout(mapbox_layers = [dict(sourcetype = 'geojson',
-                                        source = geojson_url,
-                                        color='black',
-                                        type = 'line',   
-                                        line=dict(width=1))])
-                                                                                          
-st.plotly_chart(mapa_fig)
+col_mapa, col2 = st.columns([3,2])
+
+with col_mapa:
+    # Criar o mapa
+    px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw')
+    mapa_fig = px.choropleth_mapbox(tabela_mapa, geojson=tabela_mapa.geometry,
+                                    locations=tabela_mapa.index,
+                                    color='Categorias',
+                                    color_discrete_map = cores[parametro],
+                                    center={'lat': centro_y, 'lon': centro_x},
+                                    zoom=zoom_ini,
+                                    mapbox_style="open-street-map",
+                                    hover_name='NM_MUN', hover_data = 'Insatisfatório %',
+                                    category_orders={'Categorias': [ 'Sem dados', '0 %', '1 % - 10 %', '11 % - 20 %', '21 % - 30 %', 'mais que 30 %']},
+                                    width=800,
+                                    height=700,
+                                    title=f'{parametro} Insatisfatório %')
+    # Altera a espessura da linha da camada das CRS
+    mapa_fig.update_traces(marker_line_width=0.3)
+    mapa_fig.update_layout(margin={"r": 0, "t": 25, "l": 0, "b": 0})
+    # Insere no mapa a camada das CRS
+    mapa_fig.update_layout(mapbox_layers = [dict(sourcetype = 'geojson',
+                                            source = geojson_url,
+                                            color='black',
+                                            type = 'line',   
+                                            line=dict(width=1))])
+                                                                                              
+    st.plotly_chart(mapa_fig)
