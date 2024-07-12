@@ -68,7 +68,8 @@ with col1:
         forma_abastecimento_selecionada = st.multiselect(label='Selecione o tipo da forma',
                                                          options=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()),
                                                          default=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()))
-
+        parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
+        
 # Criar filtro para selecionar dados da Regional de Saúde específica
 filtro_crs = dados_2024['Regional de Saúde'] == crs_selecionada
 
@@ -95,7 +96,7 @@ if crs_selecionada != 'Todas':
     # Alterar o zoom para aproximar da CRS
     zoom_ini = 7
 
-parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
+#parametro = st.selectbox(label='Selecione o parâmetro', options=dados_2024['Parâmetro'].unique(), index=3)
 filtro = dados_2024['Parâmetro'] == parametro
 dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
 
