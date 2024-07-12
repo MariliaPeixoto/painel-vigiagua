@@ -100,6 +100,9 @@ if crs_selecionada != 'Todas':
 filtro = dados_2024['Parâmetro'] == parametro
 dados = pd.pivot_table(dados_2024[filtro], index='Município', columns='Status', aggfunc='size').reset_index().fillna(0)
 
+# Adicionar espaçamento vertical
+st.write("\n" * 5)
+
 # Cálculo da porcentagem para amostras inadequadas GERAL
 with col2:
     total_rows = len(dados_2024)
