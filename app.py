@@ -244,7 +244,7 @@ dados_crs['Insatisfatório %'] = ((dados_crs['Inadequado'] / (dados_crs['Adequad
 
 # Gráfico de dispersão
 fig = px.strip(dados_crs.sort_values('Regional de Saúde'), x="Regional de Saúde", y="Insatisfatório %",
-              color="Regional de Saúde", hover_name="Município", range_y=[0,100],
+              color="Regional de Saúde", hover_name="Município", range_y=[-5,105],
                title='Porcentagem de amostras insatisfatórias por CRS')
 # Centralizar o título e ajustar o layout
 fig.update_layout(
