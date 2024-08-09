@@ -251,4 +251,4 @@ fig.update_layout(
     yaxis_title='Insatisfatório %',
     showlegend=False
 )
- st.plotly_chart(fig)
+st.plotly_chart(fig)
