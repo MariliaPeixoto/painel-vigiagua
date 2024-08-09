@@ -200,7 +200,7 @@ min_x, min_y, max_x, max_y = tabela_mapa.total_bounds
 centro_x = (min_x + max_x) / 2
 centro_y = (min_y + max_y) / 2
 
-col_mapa, col2 = st.columns([3,3])
+col_mapa, col2 = st.columns([2,3])
 
 with col_mapa:
     filtro = dados_2024['Parâmetro'] == parametro
