@@ -228,5 +228,6 @@ with col_mapa:
                                             color='black',
                                             type = 'line',   
                                             line=dict(width=1))])
+    dados_2024
                                                                                               
     st.plotly_chart(mapa_fig)
