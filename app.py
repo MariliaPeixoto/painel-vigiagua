@@ -228,6 +228,12 @@ with col_mapa:
                                             color='black',
                                             type = 'line',   
                                             line=dict(width=1))])
-    dados_2024
                                                                                               
     st.plotly_chart(mapa_fig)
+# Agrupar os dados por CRS
+dados_crs = dados_2024.groupby(['Município', 'Regional de Saúde', 'Status']).size().unstack(fill_value=0).reset_index()
+
+# Cálculo porcentagem de insatisfatórios
+dados_crs['Insatisfatório %'] = ((dados_crs['Inadequado'] / (dados_crs['Adequado'] + dados_crs['Inadequado'])) * 100).round(2)
+dados_crs['Regional de Saúde'] = dados_crs['Regional de Saúde'].str.zfill(7)
+dados_crs
