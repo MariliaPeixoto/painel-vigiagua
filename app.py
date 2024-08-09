@@ -18,9 +18,15 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png
 col2.title('VIGIAGUA RS')
 col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=230)
 
+# Usando o cache data
+@st.cache_data
+def atualiza_banco(url):
+    df = pd.read_csv(url, sep=';')
+    df['Regional de Saúde'] = df['Regional de Saúde'].str.zfill(7)
+
+    return df
 # Amostras dos dados abertos
-dados_2024 = pd.read_csv('https://drive.google.com/uc?export=download&id=1aFmCeDug7eJRhTxSwIXxqw_hYHeUwKGC', sep=';')
-dados_2024['Regional de Saúde'] = dados_2024['Regional de Saúde'].str.zfill(7)
+dados_2024 = atualiza_banco('https://drive.google.com/uc?export=download&id=1aFmCeDug7eJRhTxSwIXxqw_hYHeUwKGC')
 
 # Amostras nao validadas
 dados_nao_validadas = pd.read_excel('https://drive.google.com/uc?export=download&id=1-DGZAo4cCk0jIVnmDkKRBVWDtWfaBAF2')
