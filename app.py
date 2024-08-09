@@ -235,5 +235,20 @@ dados_crs = dados_2024.groupby(['Município', 'Regional de Saúde', 'Status']).s
 
 # Cálculo porcentagem de insatisfatórios
 dados_crs['Insatisfatório %'] = ((dados_crs['Inadequado'] / (dados_crs['Adequado'] + dados_crs['Inadequado'])) * 100).round(2)
-dados_crs['Regional de Saúde'] = dados_crs['Regional de Saúde'].str.zfill(7)
-dados_crs
+
+# Gráfico de dispersão
+fig = px.strip(dados_crs.sort_values('Regional de Saúde'), x="Regional de Saúde", y="Insatisfatório %",
+              color="Regional de Saúde", hover_name="Município", range_y=[0,100],
+               title='Porcentagem de amostras insatisfatórias por CRS')
+# Centralizar o título e ajustar o layout
+fig.update_layout(
+    title={
+        'text': 'Porcentagem de amostras insatisfatórias por CRS',
+        'x': 0.5,  # Centralizar horizontalmente
+        'xanchor': 'center'  # Ancorar no centro horizontal
+    },
+    xaxis_title='Regional de Saúde',
+    yaxis_title='Insatisfatório %',
+    showlegend=False
+)
+ st.plotly_chart(fig)
