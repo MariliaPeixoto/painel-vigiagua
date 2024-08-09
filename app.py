@@ -243,7 +243,7 @@ fig = px.strip(dados_crs.sort_values('Regional de Saúde'), x="Regional de Saúd
 # Centralizar o título e ajustar o layout
 fig.update_layout(
     title={
-        'text': 'Porcentagem de amostras insatisfatórias por CRS',
+        'text': f'Porcentagem de amostras insatisfatórias de {parametro} por CRS',
         'x': 0.5,  # Centralizar horizontalmente
         'xanchor': 'center'  # Ancorar no centro horizontal
     },
