@@ -68,7 +68,7 @@ with col1:
                                            options= opcoes_crs)
         with coluna_ano:
             ano_selecionado = st.selectbox(label='Selecione o ano',
-                                             options=sorted(dados_2024['Ano'].unique())
+                                             options=sorted(dados_2024['Ano'].unique()))
         with coluna_forma:
             forma_abastecimento_selecionada = st.multiselect(label='Selecione o tipo da forma',
                                                              options=sorted(dados_2024['Tipo da Forma de Abastecimento'].unique()),
