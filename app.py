@@ -67,7 +67,7 @@ with col1:
             crs_selecionada = st.selectbox(label='Selecione a CRS',
                                            options= opcoes_crs)
         with coluna_ano:
-            ano_selecionado = st.multiselect(label='Selecione o ano',
+            ano_selecionado = st.selectbox(label='Selecione o ano',
                                              options=sorted(dados_2024['Ano'].unique()),
                                              default=sorted(dados_2024['Ano'].unique()))
         with coluna_forma:
