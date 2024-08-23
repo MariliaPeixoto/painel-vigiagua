@@ -53,7 +53,7 @@ geojson_url = "https://raw.githubusercontent.com/andrejarenkow/geodata/main/RS_p
 # Cria variavel para mudar o zoom
 zoom_ini = 5.5
 
-col1, col2, col3, col4 = st.columns([2,1,1,1])
+col1, col2, col3, col4 = st.columns([3,1,1,1])
 
 with col1:
     container_filtros = st.container()
